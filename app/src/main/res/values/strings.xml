@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SomeTask</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="retry">Retry</string>
+    <string name="add">add</string>
+    <string name="remove">remove</string>
+    <string name="overlay">Overlay</string>
+    <string name="elevation">Elevation</string>
+    <string name="save">Save</string>
+    <string name="max_count">Max count</string>
+</resources>
