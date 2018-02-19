@@ -6,29 +6,25 @@
     <data>
 
         <variable
-            name="vmi"
+            name="vm"
             type="com.mvvn.vitaliy.sometask.presentation.main.MainNavigationActivityViewModel"/>
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp">
+            android:layout_height="wrap_content">
+
 
         <com.mvvn.vitaliy.sometask.presentation.main.decky_cards.SlidingDeck
             android:id="@+id/sliding_deck"
             style="@style/slideDeck"
-            android:layout_marginBottom="200dp"
-            />
+           />
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,6 +65,6 @@
             </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
+    </FrameLayout>
 
 </layout>

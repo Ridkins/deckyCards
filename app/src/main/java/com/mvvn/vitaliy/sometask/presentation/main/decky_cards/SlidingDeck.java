@@ -678,7 +678,7 @@ public class SlidingDeck extends ViewGroup {
         return result;
     }
 
-    void performReleaseTouch() {
+  public   void performReleaseTouch() {
         if (!performingSwipe) {
             if (offsetLeftRight > INITIAL_OFFSET_LEFT && viewIndex != NO_VIEW) {
                 if (offsetLeftRight < maximumOffsetLeftRight) {

@@ -10,18 +10,17 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.mvvn.vitaliy.sometask.BR;
-import com.squareup.leakcanary.RefWatcher;
 
 import javax.inject.Inject;
 
 
 
 
-public class MvvmActivity<B extends ViewDataBinding, V extends ViewModel> extends FragmentActivity {
+public class MvvmActivity<B extends ViewDataBinding, V extends ViewModel> extends AppCompatActivity {
 
     @Inject Class<V> viewModelClass;
 
@@ -31,14 +30,10 @@ public class MvvmActivity<B extends ViewDataBinding, V extends ViewModel> extend
 
     @Inject ViewModelProvider.Factory viewModelFactory;
 
-    @Inject RefWatcher refWatcher;
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (refWatcher != null) {
-            refWatcher.watch(this);
-        }
     }
 
     protected final View setAndBindContentView(@NonNull Activity activity, @Nullable Bundle savedInstanceState, @LayoutRes int layoutResID) {

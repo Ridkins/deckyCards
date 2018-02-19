@@ -6,8 +6,6 @@ import android.content.res.Resources;
 import com.mvvn.vitaliy.sometask.presentation.main.MainNavigationActivityViewModel;
 import com.mvvn.vitaliy.sometask.presentation.main.SettingsActivityViewModel;
 import com.mvvn.vitaliy.sometask.presentation.main.authorization.SplashActivityViewModel;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 import javax.inject.Singleton;
 
@@ -18,13 +16,6 @@ import dagger.Provides;
 
 @Module(includes = ViewModelModule.class)
 public class AppModule {
-
-
-
-    @Provides
-    @Singleton RefWatcher provideRefWatcher(Application application) {
-        return LeakCanary.install(application);
-    }
 
     @Provides
     @Singleton

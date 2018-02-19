@@ -27,7 +27,7 @@ package com.mvvn.vitaliy.sometask.presentation.main.decky_cards;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 
-class SlidingDeckTouchController {
+public class SlidingDeckTouchController {
     private static final int NO_VIEW = -1;
     private static final int SNAP_VELOCITY = 5000;
     private static final int VELOCITY_UNITS = 1000;
@@ -43,7 +43,7 @@ class SlidingDeckTouchController {
     private VelocityTracker velocityTracker;
     private int currentItemView = NO_VIEW;
 
-    enum MotionType {
+    public enum MotionType {
         UNKNOWN,
         HORIZONTAL,
         VERTICAL

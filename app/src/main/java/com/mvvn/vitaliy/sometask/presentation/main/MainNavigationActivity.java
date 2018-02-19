@@ -1,14 +1,16 @@
 package com.mvvn.vitaliy.sometask.presentation.main;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.mvvn.vitaliy.sometask.R;
 import com.mvvn.vitaliy.sometask.databinding.MainNavigationActivityLayoutBinding;
 import com.mvvn.vitaliy.sometask.presentation.base.ActivityNavigator;
 import com.mvvn.vitaliy.sometask.presentation.base.MvvmActivity;
-import com.mvvn.vitaliy.sometask.presentation.main.decky_cards.SlidingDeck;
 import com.mvvn.vitaliy.sometask.presentation.main.decky_cards.SlidingDeckAdapter;
 import com.mvvn.vitaliy.sometask.presentation.main.decky_cards.SlidingDeckModel;
 
@@ -26,7 +28,7 @@ public class MainNavigationActivity extends MvvmActivity<MainNavigationActivityL
     @Inject
     ActivityNavigator activityNavigator;
     private SlidingDeckAdapter slidingAdapter;
-
+    private int itemCount = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,41 +37,57 @@ public class MainNavigationActivity extends MvvmActivity<MainNavigationActivityL
         binding.btnSettings.setOnClickListener(this);
         binding.btnAdd.setOnClickListener(this);
         binding.btnRemove.setOnClickListener(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+       getBundle();
+        if(!viewModel.isExpanded()){
+            binding.slidingDeck.performReleaseTouch();
+        }else{
+            binding.slidingDeck.performVerticalSwipe();
+        }
+
+
+    }
+
+    private void getBundle(){
         Bundle mBundle = this.getIntent().getExtras();
         if (mBundle != null) {
-            binding.slidingDeck.setMaximumViewsOnScreen(Integer.valueOf(mBundle.getString(MAXCOUNT)));
+            itemCount =Integer.valueOf(mBundle.getString(MAXCOUNT));
+            binding.slidingDeck.setMaximumViewsOnScreen(Integer.valueOf(mBundle.getString(MAXCOUNT))+ 10);
             binding.slidingDeck.setItemsMarginTop(Integer.valueOf(mBundle.getString(OVERLAY)));
             initializeSlidingDeck(Integer.valueOf(mBundle.getString(ELEVATION)));
-
         }else {
             binding.slidingDeck.setMaximumViewsOnScreen(10);
             binding.slidingDeck.setItemsMarginTop(30);
             initializeSlidingDeck(6);
         }
+
+
     }
 
     private void initializeSlidingDeck(int elevation) {
 
         slidingAdapter = new SlidingDeckAdapter(this,elevation);
-        slidingAdapter.add(new SlidingDeckModel());
-        slidingAdapter.add(new SlidingDeckModel());
-        slidingAdapter.add(new SlidingDeckModel());
-        slidingAdapter.add(new SlidingDeckModel());
-        slidingAdapter.add(new SlidingDeckModel());
+        for (int i = 0; i < itemCount; i++) {
+            slidingAdapter.add(new SlidingDeckModel());
+        }
         binding.slidingDeck.setAdapter(slidingAdapter);
-        binding.slidingDeck.setSwipeEventListener(new SlidingDeck.SwipeEventListener() {
-            @Override
-            public void onSwipe(SlidingDeck parent, View item) {
-                SlidingDeckModel model = (SlidingDeckModel) item.getTag();
-                slidingAdapter.remove(model);
-                slidingAdapter.notifyDataSetChanged();
-            }
-        });
     }
+
+
+    @Override
+    public void onDestroy() {
+        viewModel.setExpanded(binding.slidingDeck.isExpanded());
+        super.onDestroy();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.btn_add:
                 slidingAdapter.add(new SlidingDeckModel());
                 slidingAdapter.notifyDataSetChanged();

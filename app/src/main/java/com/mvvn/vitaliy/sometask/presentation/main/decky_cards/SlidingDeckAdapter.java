@@ -56,6 +56,8 @@ public class SlidingDeckAdapter extends ArrayAdapter<SlidingDeckModel> {
         rooot.setCardElevation((float) elevation);
         completeView.setTag(view);
 
+
+/*
         completeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +71,7 @@ public class SlidingDeckAdapter extends ArrayAdapter<SlidingDeckModel> {
                 });
             }
         });
+*/
 
 
         return view;

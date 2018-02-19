@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.mvvn.vitaliy.sometask.presentation.main.MainNavigationViewModel"/>
+            type="com.mvvn.vitaliy.sometask.presentation.main.MainNavigationActivityViewModel"/>
 
     </data>
 
