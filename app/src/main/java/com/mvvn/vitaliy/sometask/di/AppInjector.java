@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-import com.mvvn.vitaliy.sometask.CleverApp;
+import com.mvvn.vitaliy.sometask.DeckyApp;
 
 import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
@@ -18,15 +18,15 @@ public class AppInjector {
 
     private AppInjector(){}
 
-    public static void init(CleverApp securityApp) {
+    public static void init(DeckyApp deckyApp) {
         DaggerAppComponent
                 .builder()
-                .application(securityApp)
+                .application(deckyApp)
                 .build()
-                .inject(securityApp);
+                .inject(deckyApp);
 
 
-        securityApp.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+        deckyApp.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                 handleActivity(activity);

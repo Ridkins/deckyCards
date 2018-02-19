@@ -15,7 +15,7 @@ import timber.log.Timber;
 /*********
  * Created by vitaliy on 12/20/17.
  ********/
-public class CleverApp extends Application implements HasActivityInjector {
+public class DeckyApp extends Application implements HasActivityInjector {
 
 
 

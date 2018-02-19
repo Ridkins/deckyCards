@@ -2,7 +2,7 @@ package com.mvvn.vitaliy.sometask.di;
 
 import android.app.Application;
 
-import com.mvvn.vitaliy.sometask.CleverApp;
+import com.mvvn.vitaliy.sometask.DeckyApp;
 
 import javax.inject.Singleton;
 
@@ -24,5 +24,5 @@ public interface AppComponent {
         AppComponent build();
     }
 
-    void inject(CleverApp cleverApp);
+    void inject(DeckyApp deckyApp);
 }
